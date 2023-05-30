@@ -1,0 +1,73 @@
+<div class="text-secondary ms-3 mt-1">
+    <p>{{sDetails | date:"short"}}</p>
+</div>
+<h3 class="text-white mt-3 p-2 ms-3">Welcome {{user}}</h3>
+<div class="text-end">
+    <button (click)="logout()" class="btn btn-info me-2 container" style="width: 100px;border-radius: 30px;">Logout</button>
+</div> 
+<div class="text-end">
+    <button (click)="deleteAcc()" class="btn btn-info me-2 mt-2 container" style="width: 100px;border-radius: 30px;">Delete</button>
+</div> 
+
+
+<app-delete (onDelete)="ondeleteAcc($event)" (onCancel)="cancelChild()" [item]="acno"></app-delete>
+
+
+<div >
+    <a [ngClass]="acno?'s1':''" class="text-white"  routerLink="/transaction"><strong>View Transaction Details</strong></a>
+</div>  
+
+   
+    <div class="row " [ngClass]="acno?'s1':''">
+        <div class="col-6 p-5">
+            <form [formGroup]="depositForm" style="background-color: grey;border-radius: 20px;" class="mt-2 p-3 w-50 container text-center border">
+                <h4 class="text-center">Deposit</h4>
+                <div style="background-color: black; border-radius: 20px;">
+                    <input formControlName="acno" id="ac1" name="acno" placeholder="Account number" class="form-control mt-2 p-2" type="text">
+                </div>
+                <div *ngIf="this.depositForm.get('acno')?.errors && this.depositForm.get('acno')?.touched">
+                    <p class="text-info">Contain numbers only</p>
+                </div>
+                <div>
+                    <input  formControlName="psw" id="p1" name="password1"  class="form-control mt-2 p-2" type="password" placeholder="password">
+                </div>
+                <div *ngIf="this.depositForm.get('psw')?.errors && this.depositForm.get('psw')?.touched">
+                    <p class="text-info">Contain numbers and characters</p>
+                </div>
+                <div style="background-color: black; border-radius: 20px;">
+                    <input  formControlName="amnt"  id="a1" name="amt" placeholder="amount" class="form-control mt-2 p-2" type="text">
+                </div>
+                <div *ngIf="this.depositForm.get('amnt')?.errors && this.depositForm.get('amnt')?.touched">
+                    <p class="text-info">Contain numbers only</p>
+                </div>
+                <button (click)="deposit()" class="btn btn-info mt-2 p-2">Deposit</button>
+                </form>
+            </div>
+            
+        <div class="col-6 p-5" >
+            <form [formGroup]="withdrawForm" style="background-color: grey;border-radius: 20px;" class="mt-2 p-3 w-50 container text-center border">
+                <h4 class="text-center">Withdraw</h4>
+                <div style="background-color: black; border-radius: 20px;">
+                    <input formControlName="acno1"  id="ac2" name="accno" placeholder="Account number" class="form-control mt-2 p-2" type="text">
+                </div>
+                <div *ngIf="this.withdrawForm.get('acno1')?.errors && this.withdrawForm.get('acno1')?.touched">
+                    <p class="text-info">Contain numbers only</p>
+                </div>
+                <div>
+                    <input formControlName="psw1" id="p2" name="password2"  class="form-control mt-2 p-2" type="password" placeholder="password">
+                </div>
+                <div *ngIf="this.withdrawForm.get('psw1')?.errors && this.withdrawForm.get('psw1')?.touched">
+                    <p class="text-info">Contain numbers and characters</p>
+                </div>
+                <div style="background-color: black; border-radius: 20px;">
+                    <input formControlName="amnt1"  id="a2" name="amnt" placeholder="Amount" class="form-control mt-2 p-2" type="text">
+                </div>
+                <div *ngIf="this.withdrawForm.get('amnt1')?.errors && this.withdrawForm.get('amnt1')?.touched">
+                    <p class="text-info">Contain numbers only</p>
+                </div>
+                <button (click)="withdraw()" class="btn btn-info mt-2 p-2">Withdraw</button>
+            </form>
+        </div>
+
+        
+    </div>

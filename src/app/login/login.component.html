@@ -1,0 +1,23 @@
+<div class="text-info">
+    <h3>{{data}}</h3>
+</div>
+
+<form [formGroup]="loginForm" class="mt-5 p-3 w-50 container">
+    <h1 class="text-center" style="color: white;">Login</h1>
+    <div style="background-color: black; border-radius: 20px;">
+        <input formControlName="acno" id="u1" name="uname" class="form-control mt-2 p-2" type="text" [placeholder]="data1">
+    </div>
+    <div *ngIf="this.loginForm.get('acno')?.errors && this.loginForm.get('acno')?.touched">
+        <p class="text-info">Contain only numbers</p>
+    </div>
+    <div>
+        <input formControlName="psw" id="p1" name="password"  class="form-control mt-2 p-2" type="password" placeholder="password">
+    </div>
+    <div *ngIf="this.loginForm.get('psw')?.errors && this.loginForm.get('psw')?.touched">
+        <p class="text-info">Contain numbers and characters</p>
+    </div>
+    <button (click)="login()" class="btn btn-light mt-2 p-2">Login</button>
+    <p class="mt-2 text-white">don't have account?
+        <a style="text-decoration: none;" href="register">Create account</a>
+    </p>
+</form>

@@ -1,0 +1,24 @@
+
+
+<form  [formGroup]="registerForm" class="mt-5 p-3 w-50 container">
+    <h1 class="text-center" style="color: white;">Register</h1>
+    <div style="background-color: black; border-radius: 20px;">
+        <input formControlName="acno" id="ac" name="acno" placeholder="Account number" class="form-control mt-2 p-2" type="text">
+    </div>
+    <div *ngIf="this.registerForm.get('acno')?.errors && this.registerForm.get('acno')?.touched" class="text-start ms-2">
+        <p class="text-info">Include numbers only</p>
+    </div>
+    <div style="background-color: black; border-radius: 20px;">
+        <input formControlName="uname"  id="un1" name="uname" placeholder="Username" class="form-control mt-2 p-2" type="text">
+    </div>
+    <div *ngIf="this.registerForm.get('uname')?.errors && this.registerForm.get('uname')?.touched">
+        <p class="text-info">Include characters only</p>
+    </div>
+    <div>
+        <input formControlName="psw" id="ps1" name="password"  class="form-control mt-2 p-2" type="password" placeholder="password">
+    </div>
+    <div *ngIf="this.registerForm.get('psw')?.errors && this.registerForm.get('psw')?.touched">
+       <p class="text-info">Include characters and numbers</p>
+    </div>
+    <button (click)="register()" class="btn btn-light mt-2 p-2">Submit</button>
+</form>
